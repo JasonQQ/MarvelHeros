@@ -252,7 +252,6 @@ extension HeroDetailViewController: UITableViewDelegate {
         sectionHeaderLabel.translatesAutoresizingMaskIntoConstraints = false
         sectionHeaderLabel.text = self.tableViewHeaders[section]
         sectionHeaderLabel.textColor = UIColor.black
-        sectionHeaderLabel.frame.origin.x = 6
         view.addSubview(sectionHeaderLabel)
         return view
     }
