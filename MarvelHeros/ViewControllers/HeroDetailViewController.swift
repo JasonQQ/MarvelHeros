@@ -118,21 +118,23 @@ class HeroDetailViewController: UIViewController {
         let httpClient = HTTPAPIClient(publicKey: Marvel.publicKey, privateKey: Marvel.privateKey)
         
         let charactersClient = CharactersClient(httpClient: httpClient)
-        charactersClient.getComics(CharacterComicsRequest(characterId: characterId, limit: 3)) { response in
-            print("\nGet comics for character finished:")
-            
-            switch response {
-            case .success(let dataContainer):
-                for data in dataContainer.results {
-                    print("  Title: \(data.title ?? "Unnamed comic")")
-                    print("  description: \(data.description ?? "None")")
+        DispatchQueue.global().async {
+            charactersClient.getComics(CharacterComicsRequest(characterId: characterId, limit: 3)) { response in
+                print("\nGet comics for character finished:")
+                
+                switch response {
+                case .success(let dataContainer):
+                    for data in dataContainer.results {
+                        print("  Title: \(data.title ?? "Unnamed comic")")
+                        print("  description: \(data.description ?? "None")")
+                    }
+                    self.comics = dataContainer.results
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                case .failure(let error):
+                    print(error)
                 }
-                self.comics = dataContainer.results
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            case .failure(let error):
-                print(error)
             }
         }
     }
@@ -141,21 +143,23 @@ class HeroDetailViewController: UIViewController {
         let httpClient = HTTPAPIClient(publicKey: Marvel.publicKey, privateKey: Marvel.privateKey)
         
         let charactersClient = CharactersClient(httpClient: httpClient)
-        charactersClient.getEvents(CharacterEventsRequest(characterId: characterId, limit: 3)) { response in
-            print("\nGet events for character finished:")
-            
-            switch response {
-            case .success(let dataContainer):
-                for data in dataContainer.results {
-                    print("  Title: \(data.title ?? "Unnamed event")")
-                    print("  description: \(data.description ?? "None")")
+        DispatchQueue.global().async {
+            charactersClient.getEvents(CharacterEventsRequest(characterId: characterId, limit: 3)) { response in
+                print("\nGet events for character finished:")
+                
+                switch response {
+                case .success(let dataContainer):
+                    for data in dataContainer.results {
+                        print("  Title: \(data.title ?? "Unnamed event")")
+                        print("  description: \(data.description ?? "None")")
+                    }
+                    self.events = dataContainer.results
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                case .failure(let error):
+                    print(error)
                 }
-                self.events = dataContainer.results
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            case .failure(let error):
-                print(error)
             }
         }
     }
@@ -164,21 +168,23 @@ class HeroDetailViewController: UIViewController {
         let httpClient = HTTPAPIClient(publicKey: Marvel.publicKey, privateKey: Marvel.privateKey)
         
         let charactersClient = CharactersClient(httpClient: httpClient)
-        charactersClient.getStories(CharacterStoriesRequest(characterId: characterId, limit: 3)) { response in
-            print("\nGet stories for character finished:")
-            
-            switch response {
-            case .success(let dataContainer):
-                for data in dataContainer.results {
-                    print("  Title: \(data.title ?? "Unnamed story")")
-                    print("  description: \(data.description ?? "None")")
+        DispatchQueue.global().async {
+            charactersClient.getStories(CharacterStoriesRequest(characterId: characterId, limit: 3)) { response in
+                print("\nGet stories for character finished:")
+                
+                switch response {
+                case .success(let dataContainer):
+                    for data in dataContainer.results {
+                        print("  Title: \(data.title ?? "Unnamed story")")
+                        print("  description: \(data.description ?? "None")")
+                    }
+                    self.stories = dataContainer.results
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                case .failure(let error):
+                    print(error)
                 }
-                self.stories = dataContainer.results
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            case .failure(let error):
-                print(error)
             }
         }
     }
@@ -187,21 +193,23 @@ class HeroDetailViewController: UIViewController {
         let httpClient = HTTPAPIClient(publicKey: Marvel.publicKey, privateKey: Marvel.privateKey)
         
         let charactersClient = CharactersClient(httpClient: httpClient)
-        charactersClient.getSeries(CharacterSeriesRequest(characterId: characterId, limit: 3)) { response in
-            print("\nGet series for character finished:")
-            
-            switch response {
-            case .success(let dataContainer):
-                for data in dataContainer.results {
-                    print("  Title: \(data.title ?? "Unnamed series")")
-                    print("  description: \(data.description ?? "None")")
+        DispatchQueue.global().async {
+            charactersClient.getSeries(CharacterSeriesRequest(characterId: characterId, limit: 3)) { response in
+                print("\nGet series for character finished:")
+                
+                switch response {
+                case .success(let dataContainer):
+                    for data in dataContainer.results {
+                        print("  Title: \(data.title ?? "Unnamed series")")
+                        print("  description: \(data.description ?? "None")")
+                    }
+                    self.series = dataContainer.results
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                case .failure(let error):
+                    print(error)
                 }
-                self.series = dataContainer.results
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            case .failure(let error):
-                print(error)
             }
         }
     }
